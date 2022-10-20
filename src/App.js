@@ -14,7 +14,12 @@ const App = () => {
         <img className="leftimg" src={LeftImg} alt="logoimg" />
       </div>
       <div className="mainContent">
-        <Form inputText={inputText} setInputText={setInputText} />
+        <Form
+          todos={todos}
+          setTodos={setTodos}
+          inputText={inputText}
+          setInputText={setInputText}
+        />
         <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </>
