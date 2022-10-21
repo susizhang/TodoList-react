@@ -8,23 +8,7 @@ const App = () => {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
 
-  // save to local
-  console.log(todos);
-  const saveLocalTodos = () => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
-
-  const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
-      setTodos(todoLocal);
-    }
-  };
-
   // run once when the app start
-
   useEffect(() => {
     getLocalTodos();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -33,6 +17,21 @@ const App = () => {
   useEffect(() => {
     saveLocalTodos();
   }, [todos]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // save to local
+  const saveLocalTodos = () => {
+    localStorage.setItem("my-todos", JSON.stringify(todos));
+    console.log(saveLocalTodos);
+  };
+
+  const getLocalTodos = () => {
+    if (localStorage.getItem("my-todos") === null) {
+      localStorage.setItem("my-todos", JSON.stringify([]));
+    } else {
+      let todoLocal = JSON.parse(localStorage.getItem("my-todos"));
+      setTodos(todoLocal);
+    }
+  };
 
   return (
     <>
