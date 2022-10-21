@@ -6,23 +6,20 @@ import TodoList from "./component/TodoList";
 
 const App = () => {
   const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const localDate = localStorage.getItem("my-todos");
+    return localDate ? JSON.parse(localDate) : [];
+  });
 
   // run once when the app start
   useEffect(() => {
     getLocalTodos();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  //  useEffect
+  //  useEffect save to local
   useEffect(() => {
-    saveLocalTodos();
-  }, [todos]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // save to local
-  const saveLocalTodos = () => {
     localStorage.setItem("my-todos", JSON.stringify(todos));
-    console.log(saveLocalTodos);
-  };
+  }, [todos]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getLocalTodos = () => {
     if (localStorage.getItem("my-todos") === null) {
